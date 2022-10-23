@@ -46,6 +46,8 @@
   border: 0;
 }
 
-.modal::backdrop {
+.modalOverlay {
   background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  inset: 0;
 }

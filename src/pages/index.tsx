@@ -1,17 +1,10 @@
+import * as RadixDialog from "@radix-ui/react-dialog";
 import Image from "next/future/image";
 import Head from "next/head";
-import { useRef } from "react";
 
 import styles from "../styles/Home.module.css";
 
 const IndexPage = () => {
-  const modalRef = useRef<HTMLDialogElement | null>(null);
-
-  const handleOpenModal = () => {
-    modalRef.current?.showModal();
-    modalRef.current?.focus();
-  }
-
   return (
     <>
       <Head>
@@ -56,17 +49,21 @@ const IndexPage = () => {
           <Image src="/rocketseat.svg" alt="Blog Rocketseat" width={143} height={38.5} />
 
           <nav className={styles.nav} aria-label="Rodapé">
-            <button onClick={handleOpenModal} aria-controls="modalTermoDeUso">
-              Termos de Uso
-            </button>
+            <RadixDialog.Root>
+              <RadixDialog.Trigger>
+                Termos de Uso
+              </RadixDialog.Trigger>
+              <RadixDialog.DialogPortal>
+                <RadixDialog.Overlay className={styles.modalOverlay} />
+                <RadixDialog.Content className={styles.modal}>
+                  <RadixDialog.Title>Termos de Uso</RadixDialog.Title>
+                  <RadixDialog.Description>Description</RadixDialog.Description>
+                </RadixDialog.Content>
+              </RadixDialog.DialogPortal>
+            </RadixDialog.Root>
           </nav>
         </footer>
-        <dialog id="modalTermoDeUso" aria-labelledby="dialogTitle" aria-describedby="dialogDescription" className={styles.modal} ref={modalRef} tabIndex={-1}>
-          <h2 id="dialogTitle">Termos de Uso</h2>
-          <p id="dialogDescription"></p>
-        </dialog>
       </main>
-
     </>
   )
 }
