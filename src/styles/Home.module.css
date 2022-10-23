@@ -1,4 +1,5 @@
-.header {
+.header,
+.footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,4 +25,27 @@
 
 .content p {
   margin: 1.25rem 0;
+}
+
+.footer button {
+  background: transparent;
+  border: 0;
+  color: #9970f7;
+}
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  padding: 7.5rem;
+  border-radius: 5px;
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.05);
+  color: #333;
+  border: 0;
+}
+
+.modal::backdrop {
+  background: rgba(0, 0, 0, 0.5);
 }

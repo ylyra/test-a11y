@@ -1,9 +1,17 @@
 import Image from "next/future/image";
 import Head from "next/head";
+import { useRef } from "react";
 
 import styles from "../styles/Home.module.css";
 
 const IndexPage = () => {
+  const modalRef = useRef<HTMLDialogElement | null>(null);
+
+  const handleOpenModal = () => {
+    modalRef.current?.showModal();
+    modalRef.current?.focus();
+  }
+
   return (
     <>
       <Head>
@@ -43,7 +51,22 @@ const IndexPage = () => {
             <h2>O que é acessibilidade, afinal?</h2>
           </div>
         </article>
+
+        <footer className={styles.footer}>
+          <Image src="/rocketseat.svg" alt="Blog Rocketseat" width={143} height={38.5} />
+
+          <nav className={styles.nav} aria-label="Rodapé">
+            <button onClick={handleOpenModal} aria-controls="modalTermoDeUso">
+              Termos de Uso
+            </button>
+          </nav>
+        </footer>
+        <dialog id="modalTermoDeUso" aria-labelledby="dialogTitle" aria-describedby="dialogDescription" className={styles.modal} ref={modalRef} tabIndex={-1}>
+          <h2 id="dialogTitle">Termos de Uso</h2>
+          <p id="dialogDescription"></p>
+        </dialog>
       </main>
+
     </>
   )
 }
